@@ -23,6 +23,22 @@ def parse_arguments():
 
 def get_column_from_file(file_name, column_number):
 
+    """
+    Gets user-specified column from file and returns it as a list
+
+    Arguments
+    ---------
+    file_name : str
+        name of file to pull column from
+    col_num : int
+        column to calculate mean and stdev
+
+    Returns
+    ---------
+    column_values : list of int
+        list of values from user-specified column
+    """
+
     file = open(file_name, 'r')
     column_values = []
     for line in file:
@@ -34,11 +50,39 @@ def get_column_from_file(file_name, column_number):
 
 def column_mean(column_values):
 
+    """
+    Finds the mean of a list of column values
+
+    Arguments
+    ---------
+    column_values : list of int
+        list of values from a user-specified column
+
+    Returns
+    ---------
+    mean : float
+        mean of a list of values
+    """
+
     mean = sum(column_values)/len(column_values)
     return mean
 
 
 def column_stdev(column_values):
+
+    """
+    Finds the standard deviation of a list of column values
+
+    Arguments
+    ---------
+    column_values : list of int
+        list of values from a user-specified column
+
+    Returns
+    ---------
+    stdev : float
+        standard deviation of a list of values
+    """
 
     stdev = math.sqrt(
         sum([(mean-x)**2 for x in column_values]) / len(column_values))
