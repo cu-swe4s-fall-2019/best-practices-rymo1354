@@ -96,17 +96,18 @@ if __name__ == '__main__':
     try:
         column_values = get_column_from_file(args.filename, args.column_number)
     except FileNotFoundError:
-        print('Could not find ' + args.filename)
+        print('Could not find ' + args.filename, file=sys.stderr)
         sys.exit(1)
     except PermissionError:
-        print('Could not open ' + args.filename + ' due to permissions')
+        print('Could not open ' + args.filename + ' due to permissions',
+              file=sys.stderr)
         sys.exit(1)
     except ValueError:
-        print('Non-integer entry in ' + args.filename)
+        print('Non-integer entry in ' + args.filename, file=sys.stderr)
         sys.exit(1)
     except IndexError:
-        print('Column ' + str(args.column_number) + ' out of range of ' /
-              + args.filename)
+        print('Column ' + str(args.column_number) + ' not in range',
+              file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -115,8 +116,8 @@ if __name__ == '__main__':
         stdev = column_stdev(column_values)
         print('stdev:', stdev)
     except ZeroDivisionError:
-        print('Cannot divide by zero')
+        print('Cannot divide by zero', file=sys.stderr)
         sys.exit(1)
     except ValueError:
-        print('Cannot take the sqrt of negative number')
+        print('Cannot take the sqrt of negative number', file=sys.stderr)
         sys.exit(1)
