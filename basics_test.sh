@@ -64,16 +64,16 @@ done > letters.txt
 
 run test_letters python get_column_stats.py --filename letters.txt --column_number 0
 assert_no_stdout
-assert_in_stderr 'Non-integer entry in letters.txt'
+assert_in_stderr 'Non-integer value in letters.txt'
 assert_exit_code 1
 
-chmod -rwx letters.txt
+chmod -rwx data.txt
 
-run test_permissions python get_column_stats.py --filename letters.txt --column_number 0
+run test_permissions python get_column_stats.py --filename data.txt --column_number 0
 assert_no_stdout
-assert_in_stderr 'Could not open letters.txt due to permissions'
+assert_in_stderr 'Could not open data.txt due to permissions'
 assert_exit_code 1
 
-chmod +rwx letters.txt
+chmod +rwx data.txt
 rm data.txt
 rm letters.txt

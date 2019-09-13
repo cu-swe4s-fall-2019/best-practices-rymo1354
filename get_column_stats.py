@@ -68,7 +68,7 @@ def column_mean(column_values):
     return mean
 
 
-def column_stdev(column_values):
+def column_stdev(column_values, mean):
 
     """
     Finds the standard deviation of a list of column values
@@ -89,7 +89,7 @@ def column_stdev(column_values):
     return stdev
 
 
-if __name__ == '__main__':
+def main():
 
     args = parse_arguments()
 
@@ -103,7 +103,7 @@ if __name__ == '__main__':
               file=sys.stderr)
         sys.exit(1)
     except ValueError:
-        print('Non-integer entry in ' + args.filename, file=sys.stderr)
+        print('Non-integer value in ' + args.filename, file=sys.stderr)
         sys.exit(1)
     except IndexError:
         print('Column ' + str(args.column_number) + ' not in range',
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     try:
         mean = column_mean(column_values)
         print('mean:', mean)
-        stdev = column_stdev(column_values)
+        stdev = column_stdev(column_values, mean)
         print('stdev:', stdev)
     except ZeroDivisionError:
         print('Cannot divide by zero', file=sys.stderr)
@@ -121,3 +121,8 @@ if __name__ == '__main__':
     except ValueError:
         print('Cannot take the sqrt of negative number', file=sys.stderr)
         sys.exit(1)
+
+
+if __name__ == '__main__':
+
+    main()
