@@ -20,21 +20,21 @@ class TestMean(unittest.TestCase):
         self.generate_file()
 
     def test_mean(self):
-        for i in range(100):
+        for i in range(1000):
             self.generate_file()
             self.assertEqual(column_mean(self.values), round(self.mean, 3))
 
     def test_std(self):
-        for i in range(100):
+        for i in range(1000):
             self.generate_file()
             self.assertAlmostEqual(column_stdev(self.values, self.mean),
                                    self.std, 3)
 
-    def test_mean_empty_excp(self):
+    def test_mean_exception(self):
         self.assertRaises(ZeroDivisionError and
                           SystemExit, column_mean, self.empty)
 
-    def test_std_empty_excp(self):
+    def test_std_exception(self):
         self.assertRaises(ZeroDivisionError and
                           SystemExit, column_stdev, self.empty, self.values)
 
