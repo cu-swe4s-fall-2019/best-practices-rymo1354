@@ -28,11 +28,21 @@ bash basics_test.sh
 ```
 All functional tests should be passed. 
 
+To check unit tests on `get_column_stats.py` input the following:
+```
+python basics_test.py
+```
+All unit tests should also be passed.
+
 ## Installation
 
-The only major installation required is `pycodestyle`. In your conda environment, run
-the following:
+The only major installation requirements are `pycodestyle` and `numpy`. In your 
+conda environment, run the following:
 ```
 conda install pycodestyle
+```
+and
+```
+conda install numpy
 ```
 
