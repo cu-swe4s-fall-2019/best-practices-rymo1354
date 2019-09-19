@@ -64,7 +64,12 @@ def column_mean(column_values):
         mean of a list of values
     """
 
-    mean = sum(column_values)/len(column_values)
+    try:
+        mean = sum(column_values)/len(column_values)
+    except ZeroDivisionError:
+        print("Column is empty, cannot perform calculation",
+              file=sys.stderr)
+        sys.exit(1)
     return mean
 
 
@@ -84,8 +89,14 @@ def column_stdev(column_values, mean):
         standard deviation of a list of values
     """
 
-    stdev = math.sqrt(
-        sum([(mean-x)**2 for x in column_values]) / len(column_values))
+    try:
+        stdev = math.sqrt(
+            sum([(mean-x)**2 for x in column_values]) / len(column_values))
+    except ZeroDivisionError:
+        print("Column is empty, cannot perform calculation",
+              file=sys.stderr)
+        sys.exit(1)
+
     return stdev
 
 
